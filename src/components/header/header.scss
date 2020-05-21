@@ -1,0 +1,94 @@
+$color: #fff;
+
+header {
+    height: 60px;
+    background-color: #2874f0;
+    padding: 1.1rem 3rem;
+
+    .logo{
+        color: yellow;
+        font-size: 1.3rem;
+    }
+
+
+    .searchBox {
+        float: right;
+        color: #fff;
+        padding: 5px 8px;
+
+
+    }
+
+    .searchBox:hover>.searchInput {
+        width: 240px;
+        padding: 0 6px;
+    }
+
+    .searchButton {
+        color: white;
+        float: right;
+        width: 30px;
+        height: 21px;
+        background: #2874f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+        border: none;
+        font-size: 17px;
+        cursor: pointer;
+    }
+
+    .searchInput {
+        border: none;
+        background: none;
+        outline: none;
+        float: left;
+        padding: 0;
+        color: white;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 30px;
+        width: 0px;
+        border-bottom: 1px solid #ffffff;
+        color: #fff;
+        outline: none;
+
+        &::placeholder {
+            color: #fff;
+        }
+
+    }
+
+    .shopping-cart {
+        float: right;
+        color: #fff;
+        padding: 5px 8px;
+        cursor: pointer;
+        position: relative;
+
+        .cart-count {
+            position: absolute;
+            top: -7px;
+            right: -11px;
+            background-color: red;
+            display: flex;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            color: #ffffff;
+            padding: 2px;
+            font-size: 11px;
+            justify-content: center;
+        }
+    }
+
+    @media screen and (max-width: 620px) {
+        .searchBox:hover>.searchInput {
+            width: 150px;
+            padding: 0 6px;
+        }
+    }
+
+
+}
