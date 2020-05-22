@@ -10,16 +10,19 @@ export default function MyCart(props) {
         <div className="cart-item" key={i}>
             <div className="product-img"><img src={item.image} alt={item.image} /></div>
             <div className="product-price-detail">
-                <span>{item.name}</span>
-                <div className="p-detail"><span className="current-price"><FontAwesomeIcon icon={faRupeeSign} />{item.price.actual}</span> <del><FontAwesomeIcon icon={faRupeeSign} />{item.price.display}</del><span className="discount">{item.discount}% off</span></div>
+                <span className="p-name">{item.name}
+                    <div className="p-detail"><span className="current-price"><FontAwesomeIcon icon={faRupeeSign} />{item.price.actual}</span> <del><FontAwesomeIcon icon={faRupeeSign} />{item.price.display}</del><span className="discount">{item.discount}% off</span></div>
+                </span>
+
+                <div className="product-qty">
+                    <button className="minus" onClick={() => props.reduceCountEvent(item.product_code)}>-</button> <input type="text" value={item.count}></input> <button className="plus" onClick={() => props.addToCartEvent(item)}>+</button>
+                </div>
+                <div className="remove">
+                    <h6 onClick={() => props.removeCartEvent(item.product_code)}>Remove</h6>
+                </div>
             </div>
 
-            <div className="product-qty">
-                <button className="minus" onClick={() => props.reduceCountEvent(item.product_code)}>-</button> <input type="text" value={item.count}></input> <button className="plus" onClick={() => props.addToCartEvent(item)}>+</button>
-            </div>
-            <div className="remove">
-                <button onClick={()=> props.removeCartEvent(item.product_code)}>Remove</button>
-            </div>
+
         </div>
     ) : null;
 
@@ -35,7 +38,7 @@ export default function MyCart(props) {
         }
         return { actual: actual, display: display }
     }
-   
+
 
     return (
         <React.Fragment>
@@ -47,9 +50,9 @@ export default function MyCart(props) {
                 <section className="total-wrapper">
                     <div className="total">
                         <h4>Price Details</h4>
-                        <div><span>Price ({totalItems} Items)</span> <span><FontAwesomeIcon icon={faRupeeSign} />{totalPrice.display?totalPrice.display:0}</span></div>
-                        <div><span>Discount </span> <span><FontAwesomeIcon icon={faRupeeSign} />{totalPrice.display? totalPrice.display - totalPrice.actual:0}</span></div>
-                        <div className="total-payable"><span>Total Payable  </span> <span><FontAwesomeIcon icon={faRupeeSign} />{totalPrice.actual?totalPrice.actual:0}</span></div>
+                        <div><span>Price ({totalItems} Items)</span> <span><FontAwesomeIcon icon={faRupeeSign} />{totalPrice.display ? totalPrice.display : 0}</span></div>
+                        <div><span>Discount </span> <span><FontAwesomeIcon icon={faRupeeSign} />{totalPrice.display ? totalPrice.display - totalPrice.actual : 0}</span></div>
+                        <div className="total-payable"><span>Total Payable  </span> <span><FontAwesomeIcon icon={faRupeeSign} />{totalPrice.actual ? totalPrice.actual : 0}</span></div>
                     </div>
 
                 </section>

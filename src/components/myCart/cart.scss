@@ -19,14 +19,18 @@
             border: 1px solid #bcbaba;
             border-radius: 2px;
             padding: 10px;
-            display: grid;
+            display: flex;
+            flex-wrap: wrap;
             width: 100%;
             grid-template-columns: auto auto auto auto;
             margin-bottom: 10px;
 
             .product-qty,
             .remove {
-                padding: 2rem 0;
+                padding: 1rem 0;
+                margin: 0 auto;
+                justify-content: center;
+                text-align: center;
             }
 
             .product-qty {
@@ -56,8 +60,10 @@
 
             .product-price-detail {
                 font-size: 13px;
-                .p-detail{
-                    width: 170px;
+                padding: 0 8px;
+
+                .p-detail {
+                    width: 100%;
                 }
 
                 .current-price,
@@ -163,6 +169,17 @@
             width: 30%;
         }
     }
+
+    .product-price-detail {
+        width: 87%;
+
+        .p-name,
+        .product-qty,
+        .remove {
+            width: 33%;
+            display: inline-block;
+        }
+    }
 }
 
 @media (max-width: 1500px) {
@@ -173,6 +190,17 @@
 
         .total-wrapper {
             width: 30%;
+        }
+    }
+
+    .product-price-detail {
+        width: 87%;
+
+        .p-name,
+        .product-qty,
+        .remove {
+            width: 33%;
+            display: inline-block;
         }
     }
 }
@@ -187,6 +215,17 @@
             width: 30%;
         }
     }
+
+    .product-price-detail {
+        width: 87%;
+
+        .p-name,
+        .product-qty,
+        .remove {
+            width: 33%;
+            display: inline-block;
+        }
+    }
 }
 
 @media (max-width: 768px) {
@@ -197,6 +236,17 @@
 
         .total-wrapper {
             width: 30%;
+        }
+    }
+
+    .product-price-detail {
+        width: 87%;
+
+        .p-name,
+        .product-qty,
+        .remove {
+            width: 24%;
+            display: inline-block;
         }
     }
 }
@@ -211,6 +261,17 @@
             width: 100%;
         }
     }
+
+    .product-price-detail {
+        width: 61%;
+
+        .p-name,
+        .product-qty,
+        .remove {
+            width: 99%;
+            display: block;
+        }
+    }
 }
 
 @media (max-width: 320px) {
@@ -222,6 +283,17 @@
 
         .total-wrapper {
             width: 100%;
+        }
+    }
+
+    .product-price-detail {
+        width: 61%;
+
+        .p-name,
+        .product-qty,
+        .remove {
+            width: 99%;
+            display: block;
         }
     }
 }
