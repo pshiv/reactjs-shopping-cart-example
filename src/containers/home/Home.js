@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductList, getProductBySort, getOptionList } from '../../actions/rootAction';
+import { getProductList, getProductBySort, getTotalCartItem , addToCart} from '../../actions/rootAction';
 
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
@@ -13,21 +13,20 @@ function Home() {
     const dispatch = useDispatch();
 
     const productList = useSelector(state => state.HomeReducer.productList);
+    const cartItem = useSelector(state => state.HomeReducer.totalCartItem);
+
     const [sortBy, setSortBY] = useState('');
-    const [cartItem, setCartItem] = useState([]);
+    const [cartItemState, setCartItem] = useState([]);
 
 
     useEffect(() => {
-        dispatch(getProductList())
-
-        const cartItm = localStorage.getItem("cartItem") == null ? '[]' : localStorage.getItem("cartItem")
-        const cartArr = JSON.parse(cartItm);
-        setCartItem(cartArr);
+        dispatch(getProductList());
+        dispatch(getTotalCartItem());
 
         return () => {
             // cleanup
         };
-    }, [dispatch]);
+    }, [dispatch, productList]);
 
     const accendingSortBy = useCallback((param) => {
         setSortBY(param)
@@ -35,28 +34,25 @@ function Home() {
     }, [dispatch])
 
 
-    const addToCart = useCallback((param) => {
-        const cartItm = localStorage.getItem("cartItem") == null ? '[]' : localStorage.getItem("cartItem")
-        const cartArr = JSON.parse(cartItm)
-        cartArr.push(param)
-        localStorage.setItem("cartItem", JSON.stringify(cartArr))
-        setCartItem([...cartItem, param])
-    }, [cartItem])
+    const addToCartEvent = useCallback((param) => {
+        dispatch(addToCart(param));
+        dispatch(getTotalCartItem());
+        setCartItem(cartItem);
+    }, [dispatch, cartItem])
 
-    
     return (
         <React.Fragment>
             <Header cartItem={cartItem} />
             <div className="container">
                 <div className="filter-warpper">
-                    <Filter/>
+                    <Filter />
                 </div>
                 <div className="products-wrapper">
                     <div>
-                        <SortByComponent sortEventHandle={accendingSortBy} isSortBy={sortBy}/>
+                        <SortByComponent sortEventHandle={accendingSortBy} isSortBy={sortBy} />
                     </div>
                     <div>
-                        <ProductsList productList={productList} addToCartEvent={addToCart}></ProductsList>
+                        <ProductsList productList={productList} addToCartEvent={addToCartEvent}></ProductsList>
                     </div>
                 </div>
             </div>

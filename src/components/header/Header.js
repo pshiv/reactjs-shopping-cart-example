@@ -6,10 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faShoppingCart, faStar } from '@fortawesome/free-solid-svg-icons'
 
 function Header(props) {
-    // let match = useRouteMatch({
-    //     path: to,
-    //     exact: activeOnlyWhenExact
-    //   });
+
 
     return (
         <React.Fragment>

@@ -1,10 +1,9 @@
-import { GET_PRODUCT_LIST, SORT_BY, FILTER_BY, GET_CART_ITEM } from "../actionsTypes/HomeActionType";
+import { GET_PRODUCT_LIST, GET_CART_ITEM, ADD_TO_CART, REMOVE_CART_ITEM, REMOVE_ONE_CART_ITEM } from "../actionsTypes/HomeActionType";
 
 const initState = {
     productList: [],
-    selectedMovie: {},
-    optionList :[],
-    sortBy : ''
+    cartItem: [],
+    totalCartItem:[]
 }
 
 const HomeReducer = (state = initState, action) => {
@@ -15,22 +14,31 @@ const HomeReducer = (state = initState, action) => {
                 productList: action.payload
             }
 
-        case SORT_BY:
-            return {
-                ...state,
-                selectedMovie: action.payload,
-            }
-        case FILTER_BY:    
-            return {
-                ...state,
-                movieList: action.payload,
-                selectedMovie: {}
-            }
         case GET_CART_ITEM:
             return {
                 ...state,
-                optionList: action.payload,
-                sortBy : action.param
+                cartItem: action.payload,
+            }
+
+        case ADD_TO_CART:
+            return {
+                ...state,
+                cartItem: action.payload,
+            }
+        case REMOVE_CART_ITEM:
+            return {
+                ...state,
+                cartItem: action.payload,
+            }
+        case REMOVE_ONE_CART_ITEM:
+            return {
+                ...state,
+                cartItem: action.payload,
+            }
+            case 'GET_TOTAL_CART_ITEM':
+            return {
+                ...state,
+                totalCartItem: action.payload,
             }
         default:
             return state
